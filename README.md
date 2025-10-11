@@ -67,7 +67,7 @@ It aims to empower financial institutions to assess credit risk more accurately 
 
 ---
 
-## Workflow
+## Workflow :
 
 1. **Data Ingestion :** Loaded and cleaned all datasets.
 
