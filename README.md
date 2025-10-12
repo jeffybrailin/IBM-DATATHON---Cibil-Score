@@ -79,6 +79,89 @@ It aims to empower financial institutions to assess credit risk more accurately 
    
 5. **Score Calibration:** Converted the model output (odds) to standardized Bharat Score using the given formula.
    
-6. **Evaluation:** Validated using AUC, KS-score, and distribution fairness metrics.  
+6. **Evaluation:** Validated using AUC, KS-score, and distribution fairness metrics.
+
+---
+
+# Loan Default Prediction Dataset
+
+## Introduction
+The purpose of using this dataset is to use historical loan application data to predict whether an applicant will be able to repay a loan. This is a **supervised classification task**.
+
+- **Supervised**: Labels (outcomes) are included in the training data. The model learns to predict labels from features.
+- **Classification**: The label is binary:
+  - `0` → Will repay the loan on time
+  - `1` → Will have difficulty repaying the loan
+
+---
+
+## Dataset Fields
+
+| Field | Description |
+|-------|-------------|
+| SK_ID_CURR | Current application ID |
+| TARGET | Loan repayment risk: 1 - high risk; 0 - low risk |
+| NAME_CONTRACT_TYPE | Type of loan: cash or revolving (renewable credit, one-time application with multiple withdrawals) |
+| CODE_GENDER | Applicant’s gender |
+| FLAG_OWN_CAR | Does the applicant own a car? |
+| FLAG_OWN_REALTY | Does the applicant own real estate? |
+| CNT_CHILDREN | Number of children of the applicant |
+| AMT_INCOME_TOTAL | Applicant’s total income |
+| AMT_CREDIT | Amount of loan requested |
+| AMT_ANNUITY | Loan annuity |
+| AMT_GOODS_PRICE | If consumer loan, the actual price of the product |
+| NAME_TYPE_SUITE | People accompanying the applicant during the application |
+| NAME_INCOME_TYPE | Applicant’s type of income |
+| NAME_EDUCATION_TYPE | Applicant’s education level |
+| NAME_FAMILY_STATUS | Applicant’s marital status |
+| NAME_HOUSING_TYPE | Applicant’s housing situation (rent, own, live with parents, etc.) |
+| REGION_POPULATION_RELATIVE | Population density of applicant’s region (normalized) |
+| DAYS_BIRTH | Birth date (in days before application, negative value) |
+| DAYS_EMPLOYED | Length of employment in current job (in days before application, negative value) |
+| DAYS_REGISTRATION | Last time applicant updated registration info (days before application, negative) |
+| DAYS_ID_PUBLISH | Last time applicant updated ID for this application (days before application, negative) |
+| FLAG_MOBIL | Applicant provided a mobile number (1-yes, 0-no) |
+| FLAG_EMP_PHONE | Applicant provided a landline phone (1-yes, 0-no) |
+| FLAG_WORK_PHONE | Applicant provided a work phone (1-yes, 0-no) |
+| FLAG_CONT_MOBILE | Mobile number can be contacted (1-yes, 0-no) |
+| FLAG_EMAIL | Applicant provided an email (1-yes, 0-no) |
+| OCCUPATION_TYPE | Applicant’s occupation |
+| REGION_RATING_CLIENT | Company rating of applicant’s region (1, 2, 3) |
+| REGION_RATING_CLIENT_W_CITY | Company rating of applicant’s region considering city (1, 2, 3) |
+| WEEKDAY_APPR_PROCESS_START | Weekday when application started |
+| HOUR_APPR_PROCESS_START | Hour when application started |
+| REG_REGION_NOT_LIVE_REGION | Match between permanent and contact address (1-no, 2-yes, regional level) |
+| REG_REGION_NOT_WORK_REGION | Match between permanent and work address (1-no, 2-yes, regional level) |
+| LIVE_REGION_NOT_WORK_REGION | Match between contact and work address (1-no, 2-yes, regional level) |
+| REG_CITY_NOT_LIVE_CITY | Match between permanent and contact address (1-no, 2-yes, city level) |
+| REG_CITY_NOT_WORK_CITY | Match between permanent and work address (1-no, 2-yes, city level) |
+| LIVE_CITY_NOT_WORK_CITY | Match between contact and work address (1-no, 2-yes, city level) |
+| ORGANIZATION_TYPE | Type of organization where applicant works |
+| EXT_SOURCE_1 / 2 / 3 | Standardized scores from external data sources |
+| APARTMENTS_AVG → EMERGENCYSTATE_MODE | Standardized scores of applicant’s living environment indicators |
+| OBS_30_CNT_SOCIAL_CIRCLE → DEF_60_CNT_SOCIAL_CIRCLE | Related to social circle and defaults (exact meaning unclear) |
+| DAYS_LAST_PHONE_CHANGE | Last time applicant changed phone number (days before application, negative) |
+| FLAG_DOCUMENT_2 → FLAG_DOCUMENT_21 | Whether applicant provided additional documents 2, 3, 4, ..., 21 |
+| AMT_REQ_CREDIT_BUREAU_HOUR | Number of credit bureau inquiries in the last hour |
+| AMT_REQ_CREDIT_BUREAU_DAY | Number of credit bureau inquiries in the last day |
+| AMT_REQ_CREDIT_BUREAU_WEEK | Number of credit bureau inquiries in the last week |
+| AMT_REQ_CREDIT_BUREAU_MONTH | Number of credit bureau inquiries in the last month |
+| AMT_REQ_CREDIT_BUREAU_QRT | Number of credit bureau inquiries in the last quarter |
+| AMT_REQ_CREDIT_BUREAU_YEAR | Number of credit bureau inquiries in the last year |
+
+---
+
+## Notes
+- `OBS_30_CNT_SOCIAL_CIRCLE → DEF_60_CNT_SOCIAL_CIRCLE`: Likely related to the number of social contacts who have defaulted or observed financial behavior. Exact meaning is unclear.  
+- `APARTMENTS_AVG → EMERGENCYSTATE_MODE`: Aggregated metrics about applicant’s living conditions (apartment quality, utilities, etc.).
+
+---
+
+## Usage
+This dataset can be used to train supervised machine learning models to predict loan repayment risks.
+
+- **Task Type**: Binary Classification
+- **Target Variable**: `TARGET`
+
 
 
