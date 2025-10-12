@@ -85,8 +85,6 @@ It aims to empower financial institutions to assess credit risk more accurately 
 
 ## Datasets
 
-# Datasets
-
 We used the following datasets for our project.  
 
 > **Note:** The datasets are large. We chose larger datasets to ensure the model performs extraordinarily well and captures all possible patterns. Hence, we are providing links instead of uploading the files directly.  
@@ -95,7 +93,8 @@ We used the following datasets for our project.
    [https://www.kaggle.com/competitions/home-credit-default-risk/data](https://www.kaggle.com/competitions/home-credit-default-risk/data)  
 
 2. **Credit Score Classification**  
-   [https://www.kaggle.com/datasets/parisrohan/credit-score-classification](https://www.kaggle.com/datasets/parisrohan/credit-score-classification)  
+   [https://www.kaggle.com/datasets/parisrohan/credit-score-classification](https://www.kaggle.com/datasets/parisrohan/credit-score-classification)
+
 
 
 
