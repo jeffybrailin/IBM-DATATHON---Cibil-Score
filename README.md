@@ -98,12 +98,81 @@ We used the following datasets for our project.
 
 ## Insights
 
+
 <img width="1821" height="946" alt="image" src="https://github.com/user-attachments/assets/31c3bf9e-ce22-4587-80e4-c9786d93be95" />
 
 
 
 <img width="1835" height="926" alt="image" src="https://github.com/user-attachments/assets/b025c7f8-1f94-47b5-8690-570a49d995cf" />
 
+
+# IBM LinuxOne Setup:
+
+LinuxONE Setup (JupyterLab ML)
+
+This follows IBM’s “AI/ML on IBM Z & LinuxONE – Jupyter Lab ML” guide. Use it as-is. 
+
+1) Sign up & get a VM
+
+Register for the IBM LinuxONE Community Cloud and activate your account. 
+
+Log in to the Self-Service Portal → set your SSH key: Virtual Servers → your username (top-right) → Manage SSH Key Pairs → import/create key. 
+
+Create VM: Service Catalog → Virtual Servers → Create → choose Ubuntu 22.04, pick your SSH key, name the instance, launch. Wait until status becomes ACTIVE. 
+
+2) SSH into the VM
+
+Windows users: use PuTTY (per IBM’s instructions) with the same username linux1. 
+
+3) Install Docker (on the VM)
+
+```
+curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh
+sudo usermod -aG docker $USER; newgrp docker
+sudo systemctl start docker
+# refresh shell if needed
+exec bash  # or log out/in
+```
+
+
+4) Run the JupyterLab container (port 38888)
+# Pull the prebuilt JupyterLab image for s390x
+
+```
+docker pull registry.linuxone.cloud.marist.edu/l1cc/jupyterlab-image-s390x:latest
+```
+# Create a shared folder (mounted into the container)
+```
+mkdir -p ~/shared && chmod a+w ~/shared
+```
+
+### IMPORTANT: pick your own token (save it); replace YOUR_STRONG_TOKEN below
+
+```
+docker run -p 38888:8888 --name notebook \
+  -v /home/linux1/shared:/home/jovyan/shared \
+  -d registry.linuxone.cloud.marist.edu/l1cc/jupyterlab-image-s390x:latest \
+  jupyter lab --ServerApp.token='YOUR_STRONG_TOKEN'
+
+```
+Open the firewall for that port:
+
+```
+sudo iptables -I INPUT -p tcp --dport 38888 -j ACCEPT
+```
+
+
+5) Open JupyterLab in your browser
+
+```
+URL: http://<PUBLIC_IP>:38888
+```
+Token: the exact value you set as YOUR_STRONG_TOKEN in the docker run command. 
+GitHub
+
+6) Run the demo notebooks (to validate setup)
+
+JupyterLab comes with example notebooks and sample data (Fraud LSTM, Churn RF, MNIST). Open each and Run All to verify the environment.
 
 
 
