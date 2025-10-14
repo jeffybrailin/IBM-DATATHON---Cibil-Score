@@ -136,12 +136,12 @@ exec bash  # or log out/in
 
 
 4) Run the JupyterLab container (port 38888)
-# Pull the prebuilt JupyterLab image for s390x
+### Pull the prebuilt JupyterLab image for s390x
 
 ```
 docker pull registry.linuxone.cloud.marist.edu/l1cc/jupyterlab-image-s390x:latest
 ```
-# Create a shared folder (mounted into the container)
+### Create a shared folder (mounted into the container)
 ```
 mkdir -p ~/shared && chmod a+w ~/shared
 ```
